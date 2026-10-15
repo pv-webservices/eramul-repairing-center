@@ -77,7 +77,9 @@ const header=document.querySelector('.site-header');
 const onScroll=()=>header?.classList.toggle('is-scrolled',window.scrollY>40);onScroll();window.addEventListener('scroll',onScroll,{passive:true});
 
 const menu=document.querySelector<HTMLButtonElement>('.menu-toggle');const nav=document.querySelector<HTMLElement>('.main-nav');
-function setMenu(open:boolean){menu?.setAttribute('aria-expanded',String(open));menu?.setAttribute('aria-label',open?'Close navigation':'Open navigation');nav?.classList.toggle('is-open',open);document.body.classList.toggle('menu-open',open);}
+function placeDrawer(){if(header)root.style.setProperty('--nav-top',`${Math.max(0,header.getBoundingClientRect().bottom)}px`);}
+window.addEventListener('resize',()=>{if(nav?.classList.contains('is-open'))placeDrawer();});
+function setMenu(open:boolean){if(open)placeDrawer();menu?.setAttribute('aria-expanded',String(open));menu?.setAttribute('aria-label',open?'Close navigation':'Open navigation');nav?.classList.toggle('is-open',open);document.body.classList.toggle('menu-open',open);}
 menu?.addEventListener('click',()=>setMenu(menu.getAttribute('aria-expanded')!=='true'));
 
 const dropButton=document.querySelector<HTMLButtonElement>('.services-toggle');const drop=document.querySelector<HTMLElement>('.mega');const navServices=document.querySelector<HTMLElement>('.nav-services');

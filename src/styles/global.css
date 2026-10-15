@@ -505,8 +505,9 @@ html:not(.js) .hero-anim { opacity: 1; transform: none; animation: none; }
   :root { --header-h: 70px; --wrap: min(1440px, 92vw); }
   .menu-toggle { display: block; }
   .logo img { height: 46px; }
-  .main-nav { position: fixed; inset: calc(var(--header-h)) 0 0; flex-direction: column; align-items: stretch; gap: 0; padding: 18px 4vw 120px; background: #fff; overflow-y: auto; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity 0.3s, transform 0.35s var(--ease), visibility 0.3s; }
-  .site-header.is-scrolled .main-nav, .main-nav { top: var(--header-h); }
+  .site-header { backdrop-filter: none; background: #fff; } /* a filter would make the header the containing block of the fixed drawer and clip it */
+  .main-nav { position: fixed; top: var(--nav-top, var(--header-h)); left: 0; right: 0; bottom: 0; z-index: 49; flex-direction: column; align-items: stretch; gap: 0; padding: 18px 4vw 120px; background: #fff; border-top: 1px solid var(--line); overflow-y: auto; overscroll-behavior: contain; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity 0.3s, transform 0.35s var(--ease), visibility 0.3s; }
+  body.menu-open .float-actions { opacity: 0; pointer-events: none; }
   .main-nav.is-open { opacity: 1; visibility: visible; transform: none; }
   .nav-link { font-size: 1.15rem; padding: 14px 4px; border-bottom: 1px solid var(--line); border-radius: 0; font-family: var(--display); }
   .nav-link::after { display: none; }
