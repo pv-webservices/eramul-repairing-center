@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import CTA from '../../components/CTA.astro';
+import {services} from '../../data/services';
+import {business,whatsappUrl} from '../../data/business';
+export function getStaticPaths(){return services.map(service=>({params:{slug:service.slug},props:{service}}));}
+const {service}=Astro.props;
+const related=services.filter(s=>s.slug!==service.slug).sort((a,b)=>Number(b.category===service.category)-Number(a.category===service.category)).slice(0,4);
+const schema={'@context':'https://schema.org','@type':'Service',name:service.name,serviceType:service.name,description:service.intro,url:`${business.origin}/services/${service.slug}/`,provider:{'@id':`${business.origin}/#business`}};
+const wa=whatsappUrl(`Hello, I would like to enquire about ${service.name}.`);
+---
+<Layout title={`${service.name} in Noida`} description={`${service.intro} Contact Ekramul All Repairing Service Center, Hoshiyarpur, Noida Sector 51.`}>
+<script type="application/ld+json" set:html={JSON.stringify(schema)}/>
+<section class="svc-hero"><div class="wrap svc-hero-grid">
+  <div><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/services/">Services</a><span aria-hidden="true">/</span><span aria-current="page">{service.short}</span></nav>
+    <span class="eyebrow eyebrow--light">{service.category} · Noida</span><h1>{service.name}</h1><p>{service.intro}</p>
+    <div class="hero-actions" style="margin-top:30px"><a href={`/contact-us/?service=${service.slug}#enquiry`} class="btn btn--primary btn--lg">Enquire About This Service <Icon name="arrow" size={18}/></a><a class="btn btn--wa btn--lg" href={wa} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18}/>WhatsApp</a></div></div>
+  <div class:list={["svc-hero-visual",{"svc-hero-visual--photo":["geyser","gen/electrical-panel-600"].includes(service.image)}]}><img src={`/images/${service.image}.webp`} width="640" height="480" alt={`${service.short} — illustrative equipment`}/><span class="tag">Equipment illustration</span></div>
+</div></section>
+<section class="section"><div class="wrap svc-content">
+  <article>
+    <div class="svc-block reveal"><span class="eyebrow">Equipment covered</span><h2>What we can discuss</h2><div class="equip-grid">{service.equipment.map(item=><div class="equip-item"><Icon name="check" size={18}/>{item}</div>)}</div></div>
+    <div class="svc-block reveal"><span class="eyebrow">Common concerns</span><h2>What’s happening with your equipment?</h2><p>When you contact us, describe what you have noticed. These are examples of concerns you can discuss; an inspection is needed to identify the cause.</p><ol class="issue-list">{service.issues.map(issue=><li>{issue}</li>)}</ol></div>
+    <div class="svc-block reveal"><span class="eyebrow">Our approach</span><h2>How we approach your enquiry</h2><p>{service.approach}</p><p>Inspection, repair feasibility, parts, cost and timing depend on the equipment and the work required. Discuss these details directly with the service center before agreeing to a repair.</p><div class="note-box"><Icon name="shield" size={20}/><span>{service.note}</span></div></div>
+  </article>
+  <aside class="svc-aside"><span class="eyebrow eyebrow--light">Talk to the center</span><h2>Let’s understand the problem.</h2><p>Have your model number, a description of the fault and any error code ready.</p><a class="btn btn--primary" href={`tel:${business.phone}`}><Icon name="phone" size={18}/>Call {business.phoneDisplay}</a><a class="btn btn--wa" href={wa} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18}/>WhatsApp</a><a class="btn btn--ghost" href={`/contact-us/?service=${service.slug}#enquiry`}>Send an enquiry <Icon name="arrow" size={18}/></a><span class="alt-line">Or call <a href={`tel:${business.secondary}`}>{business.secondaryDisplay}</a></span></aside>
+</div></section>
+<section class="section section--paper"><div class="wrap"><div class="section-head section-head--split"><div><span class="eyebrow">Also explore</span><h2>Related repairing services</h2></div><p><a class="text-link" href="/services/">All services <Icon name="arrow" size={17}/></a></p></div><ServiceCards items={related}/></div></section><CTA/>
+</Layout>

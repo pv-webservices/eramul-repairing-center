@@ -1,0 +1,16 @@
+---
+interface Crumb {label:string;href?:string}
+interface Props {title:string;description:string;crumb:string;eyebrow?:string;image?:string;imageAlt?:string;parents?:Crumb[];}
+const {title,description,crumb,eyebrow='Ekramul All Repairing Service Center',image,imageAlt='',parents=[]}=Astro.props;
+const trail:Crumb[]=[{label:'Home',href:'/'},...parents];
+---
+<section class:list={['page-hero',{'page-hero--image':image}]}>
+  {image&&<img class="page-hero-bg" src={image} width="1600" height="1067" alt={imageAlt} fetchpriority="high"/>}
+  <div class="wrap page-hero-inner">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">{trail.map(c=><><a href={c.href}>{c.label}</a><span aria-hidden="true">/</span></>)}<span aria-current="page">{crumb}</span></nav>
+    <span class="eyebrow eyebrow--light">{eyebrow}</span>
+    <h1 set:html={title}/>
+    <p>{description}</p>
+    <slot/>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import {business} from '../data/business';
+---
+<Layout title="Thank You for Your Enquiry" description="Thank you for contacting Ekramul All Repairing Service Center. Call the center directly to discuss your equipment or confirm your enquiry." noindex>
+<section class="error-page"><div class="wrap"><span class="eyebrow">SERVICE ENQUIRY</span><h1>Thank you for getting in touch.</h1><p>If you arrived here after submitting the form, your enquiry has been passed through FormSubmit. To confirm receipt or discuss your equipment directly, please call the service center.</p><div class="hero-actions"><a class="btn btn--primary" href={`tel:${business.phone}`}><Icon name="phone" size={18}/>Call the Service Center</a><a class="btn btn--outline" href="/">Back to Home <Icon name="arrow" size={18}/></a></div></div></section>
+</Layout>

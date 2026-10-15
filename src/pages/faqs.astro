@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTA from '../components/CTA.astro';
+import Icon from '../components/Icon.astro';
+import {faqs} from '../data/faqs';
+---
+<Layout title="Frequently Asked Questions About Repair Enquiries" description="Find answers about Ekramul repair categories, washing machines, VRV AC, industrial equipment, how to enquire and our Hoshiyarpur Noida Sector 51 address.">
+<PageHero crumb="FAQs" title="A little clarity <em>before you call.</em>" eyebrow="Frequently asked questions" description="Find the basics about our service categories and what to share when you contact the service center."/>
+<section class="section"><div class="wrap faq-layout"><div><span class="eyebrow">Here to help</span><h2>Your machine. <em>Your questions.</em></h2><p>Equipment can vary. If your model or problem is not covered here, speak directly with the team to discuss it.</p><a class="btn btn--primary" href="/contact-us/">Contact the Center <Icon name="arrow" size={18}/></a></div><div class="faq-list">{faqs.map(([q,a])=><details class="faq-item"><summary>{q}<span class="faq-plus"><Icon name="plus" size={18}/></span></summary><p>{a}</p></details>)}</div></div></section><CTA/>
+</Layout>

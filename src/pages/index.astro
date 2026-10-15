@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import Process from '../components/Process.astro';
+import Contact from '../components/Contact.astro';
+import {business,whatsappUrl} from '../data/business';
+import {services,categories} from '../data/services';
+import {faqs} from '../data/faqs';
+const bySlug=(slug:string)=>services.find(s=>s.slug===slug)!;
+const sectors=[
+  {key:'industrial',title:'Industrial machinery',text:'Compressors, chillers, motors and lift machinery for plants and workshops.',image:'industrial-chiller',w:1600,h:1067,alt:'Technician checking the control panel of an industrial water chiller',icon:'factory',items:['air-compressor-repair','industrial-chiller-repair','high-compressor-washing-motor-repair','two-stand-lift-repair']},
+  {key:'home',title:'At home',text:'Everyday appliances that keep the household running.',image:'home-appliance',w:1000,h:1500,alt:'Technician inspecting an open front-load washing machine at home',icon:'home',items:['washing-machine-repair','geyser-repair','vacuum-cleaner-repair']},
+  {key:'commercial',title:'Commercial cooling',text:'Refrigeration, ice-making and air-conditioning for business premises.',image:'commercial-refrigeration',w:1000,h:1500,alt:'Technician checking a stainless steel commercial refrigerator in a kitchen',icon:'snow',items:['refrigerator-deep-freezer-repair','ice-cube-machine-repair','vrv-ductable-ac-repair']},
+  {key:'electrical',title:'Electrical',text:'Panels, house wiring and power-backup equipment.',image:'electrical-panel',w:1000,h:1000,alt:'Gloved hands testing a distribution board with a multimeter',icon:'bolt',items:['electrical-panel-house-wiring','inverter-repair']},
+];
+const field=[
+  {img:'field-9',w:825,h:1100,alt:'Outdoor cooling units at a client site',cap:'Outdoor cooling equipment'},
+  {img:'field-14',w:825,h:1100,alt:'Cooling equipment with service panels open',cap:'Panels open for inspection'},
+  {img:'field-15',w:825,h:1100,alt:'Refrigeration manifold pressure gauges',cap:'Pressure gauge equipment'},
+  {img:'field-12',w:825,h:1100,alt:'Machinery components and open panels on site',cap:'Inside the service area'},
+];
+const homeFaqs=[faqs[0],faqs[5],faqs[6],faqs[8]];
+---
+<Layout title="Machinery & Appliance Repair Services in Noida" description="Ekramul All Repairing Service Center in Hoshiyarpur, Noida Sector 51. Enquire about AC, appliances, refrigeration, electrical and industrial machinery repair.">
+
+<section class="hero">
+  <picture>
+    <source media="(max-width: 700px)" srcset="/images/gen/hero-rooftop-vrv-900.webp"/>
+    <img class="hero-bg" src="/images/gen/hero-rooftop-vrv.webp" width="1536" height="1024" fetchpriority="high" alt="Technician servicing rooftop VRV air-conditioning outdoor units with pressure gauges"/>
+  </picture>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow eyebrow--light hero-anim" style="--d:0">All machinery repairing services · Noida</span>
+      <h1 class="hero-anim" style="--d:1">Expert repairing services for a <em>smoother tomorrow.</em></h1>
+      <p class="hero-lead hero-anim" style="--d:2">Professional repairing and maintenance for your home, commercial and industrial machinery — from washing machines and geysers to VRV systems, compressors and industrial chillers.</p>
+      <div class="hero-actions hero-anim" style="--d:3">
+        <a class="btn btn--primary btn--lg" href="/contact-us/#enquiry">Book a Service <Icon name="arrow" size={18}/></a>
+        <a class="btn btn--ghost btn--lg" href={`tel:${business.phone}`}><Icon name="phone" size={18}/>{business.phoneDisplay}</a>
+        <a class="btn btn--wa btn--lg btn--icon-only-sm" href={whatsappUrl()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><Icon name="whatsapp" size={20}/><span>WhatsApp</span></a>
+      </div>
+    </div>
+    <a class="hero-proof hero-anim" style="--d:4" href="/gallery/#videos">
+      <span class="hero-proof-media"><img src="/images/video-5.webp" width="400" height="225" alt="" /><span class="play"><Icon name="play" size={18}/></span></span>
+      <span class="hero-proof-text"><small>Real footage from our site work</small><strong>VRV gas recovery & shifting</strong><span>Watch 9 videos <Icon name="arrow" size={14}/></span></span>
+    </a>
+  </div>
+  <div class="hero-strip"><div class="wrap hero-strip-inner">
+    <div><strong>12</strong><span>service categories</span></div>
+    <div><Icon name="home" size={22}/><span>Home · Commercial · Industrial</span></div>
+    <div><Icon name="headset" size={22}/><span>Direct line to the service center</span></div>
+    <div><Icon name="pin" size={22}/><span>Hoshiyarpur, Sector 51, Noida</span></div>
+  </div></div>
+  <p class="img-note">Illustrative image</p>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track">{[0,1].map(()=><div class="marquee-group">{services.map(s=><span>{s.short}<i></i></span>)}</div>)}</div></div>
+
+<section class="section" id="services"><div class="wrap">
+  <div class="section-head section-head--split reveal">
+    <div><span class="eyebrow">01 · Our services</span><h2>Complete repairing solutions for <em>all your machinery needs.</em></h2></div>
+    <p>From everyday appliances to commercial and industrial equipment — find the right place to start your repair enquiry.</p>
+  </div>
+  <div class="filter-bar" role="group" aria-label="Filter services">{categories.map((c,i)=><button class="chip" data-filter={c} aria-pressed={i===0?'true':'false'}>{c}</button>)}</div>
+  <p class="sr-only filter-status" role="status">Showing all 12 services</p>
+  <ServiceCards/>
+  <div class="section-foot"><span>Equipment shown for illustration. Share your model to discuss suitability.</span><a class="text-link" href="/services/">Explore all services <Icon name="arrow" size={17}/></a></div>
+</div></section>
+
+<section class="section section--paper"><div class="wrap">
+  <div class="section-head section-head--split reveal">
+    <div><span class="eyebrow">02 · Who we work for</span><h2>Built for homes, businesses <em>and industry.</em></h2></div>
+    <p>Our twelve categories span four settings. Choose yours to jump straight to the right service.</p>
+  </div>
+  <div class="bento">{sectors.map((s,i)=><article class={`bento-tile bento-tile--${s.key} reveal`} style={`--i:${i}`}>
+    <img src={`/images/gen/${s.image}.webp`} srcset={`/images/gen/${s.image}-${s.key==='industrial'?900:600}.webp ${s.key==='industrial'?900:600}w, /images/gen/${s.image}.webp ${s.w}w`} sizes={s.key==='industrial'?'(max-width: 900px) 100vw, 55vw':'(max-width: 900px) 100vw, 30vw'} width={s.w} height={s.h} loading="lazy" alt={s.alt}/>
+    <div class="bento-body"><span class="bento-icon"><Icon name={s.icon} size={22}/></span><h3>{s.title}</h3><p>{s.text}</p><ul>{s.items.map(slug=><li><a href={`/services/${slug}/`}>{bySlug(slug).short}<Icon name="arrow" size={14}/></a></li>)}</ul></div>
+  </article>)}</div>
+  <p class="img-note img-note--inline">Illustrative images</p>
+</div></section>
+
+<section class="section field"><div class="wrap field-grid">
+  <div class="field-copy reveal">
+    <span class="eyebrow eyebrow--light">03 · From the field</span>
+    <h2>Real site work, <em>not a stock library.</em></h2>
+    <p>These photographs and videos were supplied by the service center. They show on-site work on cooling equipment — including VRV outdoor units, refrigerant recovery, vacuum work and leak inspection.</p>
+    <ul class="tick-list"><li><Icon name="check" size={18}/>Refrigerant gas recovery before compressor replacement</li><li><Icon name="check" size={18}/>VRV outdoor unit relocation between platforms</li><li><Icon name="check" size={18}/>Pipework, valve and oil-leak inspection</li></ul>
+    <div class="hero-actions"><a class="btn btn--light" href="/gallery/">View the gallery <Icon name="arrow" size={18}/></a></div>
+  </div>
+  <div class="field-media">
+    <figure class="field-video reveal"><video controls playsinline preload="none" poster="/images/video-4.webp" aria-label="Client-supplied video: refrigerant recovery equipment"><source src="/repairing%20video-4.mp4" type="video/mp4"/><track kind="captions" src="/captions/video-4-hi.vtt" srclang="hi" label="Hindi · auto captions"/></video><figcaption>Refrigerant recovery equipment · client-supplied footage</figcaption></figure>
+    {field.map((f,i)=><figure class="field-photo reveal" style={`--i:${i}`}><img src={`/images/${f.img}.webp`} width={f.w} height={f.h} loading="lazy" alt={f.alt}/><figcaption>{f.cap}</figcaption></figure>)}
+  </div>
+</div></section>
+
+<Process/>
+
+<section class="section"><div class="wrap about-grid">
+  <div class="about-media reveal">
+    <img class="about-main" src="/images/about.webp" width="1536" height="1024" loading="lazy" alt="Technician kneeling beside a front-load washing machine with its panel removed"/>
+    <img class="about-inset" src="/images/field-10.webp" width="825" height="1100" loading="lazy" alt="Open refrigeration system showing pipework and components from client-supplied media"/>
+    <div class="about-badge"><Icon name="shield" size={26}/><div><small>Repair & maintenance</small><strong>Care for your equipment</strong></div></div>
+  </div>
+  <div class="about-copy reveal">
+    <span class="eyebrow">04 · About us</span>
+    <h2>Professional repairing services <em>you can turn to.</em></h2>
+    <p>EKRAMUL ALL REPAIRING SERVICE CENTER brings together services for air conditioning, home appliances, refrigeration, electrical equipment and selected industrial machinery.</p>
+    <p>Based in Hoshiyarpur, Noida Sector 51, we make it easy to discuss your equipment, explain the issue and explore the next step.</p>
+    <div class="commit-list">
+      {[['chat','We listen to the problem','Tell us what has changed and how your equipment is used.'],['search','We discuss the next step','Talk through equipment details and inspection arrangements.'],['tool','We focus on your machinery','Repair and maintenance for the equipment you rely on.']].map(([icon,title,text])=><div class="commit-item"><span><Icon name={icon} size={20}/></span><div><h3>{title}</h3><p>{text}</p></div></div>)}
+    </div>
+    <div class="hero-actions"><a class="btn btn--primary" href="/about-us/">More About Us <Icon name="arrow" size={18}/></a><a class="btn btn--outline" href="/why-choose-us/">Why choose us</a></div>
+  </div>
+</div></section>
+
+<section class="section section--paper"><div class="wrap faq-layout">
+  <div class="reveal"><span class="eyebrow">05 · Questions</span><h2>A little clarity <em>before you call.</em></h2><p>Equipment varies. If your model or problem isn’t covered here, speak directly with the team.</p><a class="btn btn--outline" href="/faqs/">All FAQs <Icon name="arrow" size={18}/></a></div>
+  <div class="faq-list reveal">{homeFaqs.map(([q,a])=><details class="faq-item"><summary>{q}<span class="faq-plus"><Icon name="plus" size={18}/></span></summary><p>{a}</p></details>)}</div>
+</div></section>
+
+<Contact/>
+</Layout>
+<script>
+document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach(button=>button.addEventListener('click',()=>{const category=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let count=0;document.querySelectorAll<HTMLElement>('.svc-card').forEach(card=>{card.hidden=category!=='All Services'&&card.dataset.category!==category;if(!card.hidden){count++;card.classList.add('is-visible');}});const status=document.querySelector('.filter-status');if(status)status.textContent=`Showing ${count} ${category==='All Services'?'services':category+' services'}`;}));
+</script>

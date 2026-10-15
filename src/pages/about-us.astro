@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import Process from '../components/Process.astro';
+import CTA from '../components/CTA.astro';
+---
+<Layout title="About Our Repair Service Center in Noida" description="Learn about Ekramul All Repairing Service Center in Hoshiyarpur, Noida Sector 51, and our home appliance, electrical, HVAC and industrial equipment service categories.">
+<PageHero crumb="About Us" title="Keeping everyday equipment <em>running smoothly.</em>" eyebrow="About Ekramul All" description="A local service center for repair and maintenance enquiries across home appliances, commercial equipment and selected industrial machinery."/>
+<section class="section"><div class="wrap about-grid">
+  <div class="about-media reveal"><img class="about-main" src="/images/about.webp" width="1536" height="1024" alt="Technician inspecting a washing machine with its panel removed"/><img class="about-inset" src="/images/field-14.webp" width="825" height="1100" loading="lazy" alt="Client-supplied photograph of cooling equipment with panels open"/><div class="about-badge"><Icon name="pin" size={24}/><div><small>Find us in</small><strong>Hoshiyarpur, Sector 51</strong></div></div></div>
+  <div class="about-copy reveal"><span class="eyebrow">A local place to start</span><h2>Your equipment. <em>Our attention.</em></h2><p>EKRAMUL ALL REPAIRING SERVICE CENTER is based at Shop No. 3, Gali No. 5, Hoshiyarpur, Noida Sector 51. Our service categories bring together air conditioning, appliance, refrigeration, electrical and machinery repair enquiries.</p><p>Every enquiry starts with the equipment itself: what it is, how it is used and what has changed. We encourage you to share the model, the fault and any relevant photographs so the next step can be discussed clearly.</p>
+    <div class="stat-row"><div><strong>12</strong><span>service categories</span></div><div><strong>5</strong><span>equipment groups</span></div><div><strong>3</strong><span>settings: home, commercial, industrial</span></div></div>
+    <div class="hero-actions" style="margin-top:30px"><a href="/contact-us/" class="btn btn--primary">Talk to Us <Icon name="arrow" size={18}/></a><a href="/services/" class="btn btn--outline">Our services</a></div></div>
+</div></section>
+<section class="section section--paper"><div class="wrap"><div class="section-head section-head--split reveal"><div><span class="eyebrow">A range of repair enquiries</span><h2>For the machines <em>you rely on.</em></h2></div><p>Whether it is a household appliance, a commercial cooling unit or plant machinery, start with the setting that matches yours.</p></div>
+<div class="card-grid">{[['home','At home','Washing machines, geysers, refrigerators, vacuum cleaners and inverter equipment.','/services/washing-machine-repair/'],['store','At your business','Commercial refrigeration, ice-making equipment and air conditioning systems.','/services/refrigerator-deep-freezer-repair/'],['factory','For machinery','Air compressors, industrial chillers, electrical panels, motors and lift enquiries.','/services/industrial-chiller-repair/']].map(([icon,title,text,url],i)=><article class="info-card reveal" style={`--i:${i}`}><span class="ic"><Icon name={icon} size={26}/></span><h3>{title}</h3><p>{text}</p><a href={url} class="text-link">Explore the service <Icon name="arrow" size={16}/></a></article>)}</div></div></section>
+<Process/>
+<section class="section"><div class="wrap split">
+  <div class="split-copy reveal"><span class="eyebrow">Direct communication</span><h2>A clear starting point for <em>your repair enquiry.</em></h2><p>No account or complicated booking process. Call, WhatsApp, email or use the enquiry form to tell us about your machine. Inspection arrangements and the scope of work are discussed for your specific equipment.</p><div class="hero-actions"><a class="btn btn--outline" href="/faqs/">Common Questions <Icon name="arrow" size={18}/></a></div></div>
+  <div class="split-media reveal"><img src="/images/field-10.webp" width="825" height="1100" loading="lazy" alt="Refrigeration equipment and pipework in a client-supplied repair photograph"/><p class="media-caption">Client-supplied repair photograph</p></div>
+</div></section><CTA/>
+</Layout>

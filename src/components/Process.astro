@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+const steps=[['chat','Contact Us','Call, WhatsApp or send a service enquiry.'],['search','Discuss the Issue','Tell us about your equipment, model and the fault.'],['tool','Inspection & Repair','Discuss inspection and agree on the work required.'],['clipboard','Service Completion','The service is completed as agreed with you.']];
+---
+<section class="process"><img class="process-bg" src="/images/gen/workbench-tools.webp" width="1600" height="1067" loading="lazy" alt=""/><div class="wrap">
+  <div class="section-head section-head--light reveal"><span class="eyebrow eyebrow--light">Our work process</span><h2>Four simple steps to get<br/>your machine <em>running again.</em></h2></div>
+  <ol class="process-grid">{steps.map(([icon,title,text],i)=><li class="process-step reveal" style={`--i:${i}`}><span class="process-num">0{i+1}</span><span class="process-icon"><Icon name={icon} size={28}/></span><h3>{title}</h3><p>{text}</p></li>)}</ol>
+</div></section>

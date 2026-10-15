@@ -1,0 +1,10 @@
+---
+import Icon from './Icon.astro';
+import {business,whatsappUrl} from '../data/business';
+interface Props {title?:string;text?:string;}
+const {title='Give your equipment the attention it needs.',text='Share the machine, model and fault — and discuss the next step directly with our service center.'}=Astro.props;
+---
+<section class="cta-band"><div class="wrap cta-inner reveal">
+  <div><span class="eyebrow eyebrow--light">Let’s get started</span><h2>{title}</h2><p>{text}</p></div>
+  <div class="cta-actions"><a class="btn btn--primary" href={`tel:${business.phone}`}><Icon name="phone" size={18}/>Call {business.phoneDisplay}</a><a class="btn btn--wa" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18}/>WhatsApp</a><a class="btn btn--ghost" href="/contact-us/#enquiry">Send an enquiry <Icon name="arrow" size={18}/></a></div>
+</div></section>

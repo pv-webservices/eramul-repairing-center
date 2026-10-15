@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Contact from '../components/Contact.astro';
+---
+<Layout title="Contact Us for Repair Services in Noida Sector 51" description="Call +91 9870371013 or +91 9220491412. Email ekramulhaqnoida@gmail.com or visit Shop No. 3, Gali No. 5, Hoshiyarpur, Noida Sector 51.">
+<PageHero crumb="Contact Us" title="Let’s talk about <em>your repair.</em>" eyebrow="Contact Ekramul All" description="Tell us about the machine, the model and what needs attention. Call, WhatsApp or send an enquiry to discuss the next step."/><Contact/>
+</Layout>
+<script>
+const requested=new URLSearchParams(window.location.search).get('service');if(requested){const match=Array.from(document.querySelectorAll<HTMLOptionElement>('select[name="service"] option')).find(option=>option.dataset.slug===requested);const select=document.querySelector<HTMLSelectElement>('select[name="service"]');if(select&&match)select.value=match.value;}
+</script>

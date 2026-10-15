@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import CTA from '../../components/CTA.astro';
+import Icon from '../../components/Icon.astro';
+import {categories} from '../../data/services';
+import {whatsappUrl} from '../../data/business';
+---
+<Layout title="Our Machinery & Appliance Repair Services" description="Explore all 12 Ekramul repair service categories in Noida: HVAC, washing machines, refrigeration, electrical panels, compressors, motors and industrial equipment.">
+<PageHero crumb="Services" title="The right care for <em>your machinery.</em>" eyebrow="Explore our 12 services" image="/images/gen/industrial-chiller.webp" imageAlt="Technician checking an industrial chiller control panel" description="From the washing machine at home to equipment at your business, start with the service that matches your machine. Share the model and fault to discuss suitability.">
+  <div class="hero-actions"><a class="btn btn--primary" href="/contact-us/#enquiry">Book a Service <Icon name="arrow" size={18}/></a><a class="btn btn--wa" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18}/>WhatsApp</a></div>
+</PageHero>
+<section class="section"><div class="wrap"><div class="filter-bar" role="group" aria-label="Filter services">{categories.map((c,i)=><button class="chip" data-filter={c} aria-pressed={i===0?'true':'false'}>{c}</button>)}</div><p class="filter-status" role="status">Showing all 12 services</p><ServiceCards detailed/><p class="media-caption">Equipment images are illustrative. Specific models and repair scope are discussed before work is arranged.</p></div></section><CTA/>
+</Layout>
+<script>
+document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach(button=>button.addEventListener('click',()=>{const category=button.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let count=0;document.querySelectorAll<HTMLElement>('.svc-card').forEach(card=>{card.hidden=category!=='All Services'&&card.dataset.category!==category;if(!card.hidden){count++;card.classList.add('is-visible');}});const status=document.querySelector('.filter-status');if(status)status.textContent=`Showing ${count} ${category==='All Services'?'services':category+' services'}`;}));
+</script>

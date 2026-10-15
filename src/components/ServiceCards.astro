@@ -1,0 +1,12 @@
+---
+import Icon from './Icon.astro';
+import {services, type Service} from '../data/services';
+interface Props {items?:Service[]; detailed?:boolean;}
+const {items=services,detailed=false} = Astro.props;
+---
+<div class:list={['svc-grid',{'svc-grid--detailed':detailed}]}>
+  {items.map((service,i)=><a class="svc-card reveal" href={`/services/${service.slug}/`} data-category={service.category} style={`--i:${i%4}`}>
+    <div class:list={['svc-media',{'svc-media--photo':['geyser','gen/electrical-panel-600'].includes(service.image)}]}><img src={`/images/${service.image}.webp`} width="640" height="480" loading="lazy" alt={`${service.short} — equipment illustration`}/><span class="svc-num">{String(services.indexOf(service)+1).padStart(2,'0')}</span></div>
+    <div class="svc-body"><span class="svc-cat">{service.category}</span><h3>{service.short}</h3>{detailed&&<p>{service.intro}</p>}<span class="svc-link">View service <Icon name="arrow" size={16}/></span></div>
+  </a>)}
+</div>

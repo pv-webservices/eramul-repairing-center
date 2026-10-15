@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import CTA from '../components/CTA.astro';
+import {business,whatsappUrl} from '../data/business';
+const points=[['grid','Twelve service categories','Explore a defined range from washing machines and refrigerators to compressors and industrial chillers.'],['chat','Direct communication','Reach the service center by phone, WhatsApp, email or a straightforward enquiry form.'],['pin','A local service center','Find us in Hoshiyarpur, Noida Sector 51, using the address and map search link.'],['home','Different equipment settings','Discuss appliances at home, commercial equipment or selected industrial machinery.'],['search','Equipment comes first','Share the exact model and fault so the conversation is relevant to your machine.'],['tool','Repair & maintenance enquiries','Discuss both reported faults and equipment servicing requirements with the team.']];
+---
+<Layout title="Why Choose Ekramul for a Repair Enquiry" description="Explore our wide equipment service range, direct contact options and local Noida Sector 51 service center. Discuss your repair and maintenance requirements.">
+<PageHero crumb="Why Choose Us" title="A direct connection. <em>A practical approach.</em>" eyebrow="Why choose Ekramul All" image="/images/gen/hero-rooftop-vrv.webp" imageAlt="Technician servicing rooftop VRV outdoor units" description="Machinery problems start with questions. We provide a place to discuss your equipment, explain the fault and explore inspection and repair arrangements.">
+  <div class="hero-actions"><a class="btn btn--primary" href={`tel:${business.phone}`}><Icon name="phone" size={18}/>Talk to Us</a><a class="btn btn--wa" href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" size={18}/>WhatsApp</a></div>
+</PageHero>
+<section class="section"><div class="wrap"><div class="section-head section-head--center reveal"><span class="eyebrow">What you can expect</span><h2>Start with the service that <em>fits your machinery.</em></h2></div>
+<div class="card-grid">{points.map(([icon,title,text],i)=><article class="info-card reveal" style={`--i:${i%3}`}><span class="ic"><Icon name={icon} size={26}/></span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+<section class="section section--paper"><div class="wrap split">
+  <div class="split-media reveal"><img src="/images/gen/electrical-panel.webp" width="1000" height="1000" loading="lazy" alt="Gloved hands testing a distribution board with a multimeter"/><p class="media-caption">Illustrative image</p></div>
+  <div class="split-copy reveal"><span class="eyebrow">Before you contact us</span><h2>A few details make <em>a useful conversation.</em></h2><p>Keep the equipment type, model number and a description of the issue ready. For industrial equipment, include its application and any fault indication.</p><p>The exact work, feasibility, parts and cost need to be discussed after the equipment is understood. Ask about these details before arranging a service.</p>
+    <ul class="tick-list tick-list--dark"><li><Icon name="check" size={18}/>Equipment type and model number</li><li><Icon name="check" size={18}/>What changed and when it started</li><li><Icon name="check" size={18}/>Any error code or a photo of the nameplate</li></ul>
+    <div class="hero-actions"><a class="btn btn--primary" href="/contact-us/#enquiry">Start an Enquiry <Icon name="arrow" size={18}/></a></div></div>
+</div></section><CTA/>
+</Layout>

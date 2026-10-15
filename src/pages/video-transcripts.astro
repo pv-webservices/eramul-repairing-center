@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import {videos} from '../data/videos';
+---
+<Layout title="Video Descriptions & Caption Drafts" description="Descriptions of the client-supplied gallery videos and automatically transcribed Hindi caption drafts for review." noindex>
+<PageHero crumb="Video Descriptions" parents={[{label:"Gallery",href:"/gallery/"}]} title="Video descriptions &amp; captions" eyebrow="GALLERY ACCESSIBILITY" description="Scene descriptions and automated Hindi transcript drafts for the supplied videos. Background speech and machinery terms can be unclear; caption accuracy requires business review."/>
+<section class="section"><div class="wrap legal prose"><p><a class="text-link" href="/gallery/">← Return to the gallery</a></p>{videos.map((video,i)=><section id={`video-${i+1}`} style="margin-top:40px"><h2>Video {i+1}: {video.title}</h2><p>{video.description}</p><details class="faq-item"><summary>Hindi transcript · automatic draft<span class="faq-plus">+</span></summary><p lang="hi" style="white-space:pre-line">{video.transcript}</p><p>Automatically transcribed from the supplied audio. Unclear words and equipment names may be inaccurate.</p></details></section>)}</div></section>
+</Layout>
